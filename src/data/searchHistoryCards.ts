@@ -1,4 +1,4 @@
-import type { SearchHistoryCard } from "../types/game";
+import type { SearchHistoryCard } from "../types/game.js";
 
 const riskySearches = [
   "fırında sütlaç nasıl s*k*l*r",

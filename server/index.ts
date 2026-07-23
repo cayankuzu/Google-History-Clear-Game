@@ -8,7 +8,7 @@ import {
   get,
   put,
 } from "@vercel/blob";
-import { searchHistoryCards } from "../src/data/searchHistoryCards.ts";
+import { searchHistoryCards } from "../src/data/searchHistoryCards.js";
 
 type Category =
   | "adult"
