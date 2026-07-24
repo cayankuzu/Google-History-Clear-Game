@@ -11,8 +11,9 @@ import type {
   GameResult,
   SearchHistoryCard,
 } from "../types/game";
+import { ROUND_DURATION_MS } from "../constants/game";
 
-const ROUND_DURATION = 33_000;
+const ROUND_DURATION = ROUND_DURATION_MS;
 
 const DATE_BUCKETS = [
   { until: 7, daysAgo: 0 },

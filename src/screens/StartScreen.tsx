@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { SettingsBar } from "../components/SettingsBar";
+import { ROUND_DURATION_SECONDS } from "../constants/game";
 import type {
   CommunitySearch,
   GameSettings,
@@ -69,14 +70,16 @@ export function StartScreen({
       </header>
 
       <section className="start-copy">
-        <p className="screen-eyebrow">33 SANİYE · 66 ARAMA · TEK ŞANS</p>
+        <p className="screen-eyebrow">
+          {ROUND_DURATION_SECONDS} SANİYE · 66 ARAMA · TEK ŞANS
+        </p>
         <h1>
           SON
-          <span>33</span>
+          <span>{ROUND_DURATION_SECONDS}</span>
           SANİYE
         </h1>
         <p className="start-lead">
-          Öleceğin kesin. İtibarını korumak için 33 saniyen var.
+          Öleceğin kesin. İtibarını korumak için {ROUND_DURATION_SECONDS} saniyen var.
           <strong>Geçmişini sil, geleceğini garanti et.</strong>
         </p>
 

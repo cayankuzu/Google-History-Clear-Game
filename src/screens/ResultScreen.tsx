@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ApiError, submitScore } from "../services/searchApi";
+import { ROUND_DURATION_SECONDS } from "../constants/game";
 import type {
   EndingResult,
   GameResult,
@@ -33,7 +34,7 @@ export function ResultScreen({
 
   const copyResult = async () => {
     const text = [
-      "SON 33 SANİYE",
+      `SON ${ROUND_DURATION_SECONDS} SANİYE`,
       `Unvanım: ${ending.title}`,
       `İtibar puanım: ${ending.score}/1000`,
       `${correctDecisions} doğru, ${wrongDecisions} hatalı karar.`,
@@ -87,7 +88,7 @@ export function ResultScreen({
       <section className="result-shell">
         <header className="result-minimal-top">
           <p><i /> OTURUM SONLANDIRILDI</p>
-          <span>33 SANİYE · 66 KAYIT</span>
+          <span>{ROUND_DURATION_SECONDS} SANİYE · 66 KAYIT</span>
         </header>
 
         <div className="result-hero">

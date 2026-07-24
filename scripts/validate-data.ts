@@ -69,7 +69,7 @@ const makeResult = (
   deleted,
   kept: [],
   unprocessed,
-  elapsedMs: 33_000,
+  elapsedMs: 66_000,
 });
 const optimalDeleted = sampleRound.filter(isRiskyCard);
 const optimalRemaining = sampleRound.filter((card) => !isRiskyCard(card));
