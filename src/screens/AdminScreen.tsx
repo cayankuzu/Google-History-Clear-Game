@@ -173,7 +173,9 @@ export function AdminScreen({ onBack, onChanged }: AdminScreenProps) {
     await runAction(async () => {
       await updateSubmission(editingSearch.id, {
         text: editingSearch.text,
-        category: editingSearch.category,
+        ...(editingSearch.source === "seed"
+          ? { category: editingSearch.category }
+          : {}),
         status: editingSearch.status,
       });
       setEditingSearch(null);
@@ -372,22 +374,29 @@ export function AdminScreen({ onBack, onChanged }: AdminScreenProps) {
                     />
                   </label>
                   <div>
-                    <label>
-                      Kategori
-                      <select
-                        value={editingSearch.category}
-                        onChange={(event) =>
-                          setEditingSearch({
-                            ...editingSearch,
-                            category: event.target.value as SearchCategory,
-                          })
-                        }
-                      >
-                        {categoryOptions.map((category) => (
-                          <option value={category} key={category}>{category}</option>
-                        ))}
-                      </select>
-                    </label>
+                    {editingSearch.source === "seed" ? (
+                      <label>
+                        Kategori
+                        <select
+                          value={editingSearch.category}
+                          onChange={(event) =>
+                            setEditingSearch({
+                              ...editingSearch,
+                              category: event.target.value as SearchCategory,
+                            })
+                          }
+                        >
+                          {categoryOptions.map((category) => (
+                            <option value={category} key={category}>{category}</option>
+                          ))}
+                        </select>
+                      </label>
+                    ) : (
+                      <label>
+                        Sınıflandırma
+                        <input value="Kategorisiz" readOnly />
+                      </label>
+                    )}
                     <label>
                       Durum
                       <select
@@ -414,7 +423,7 @@ export function AdminScreen({ onBack, onChanged }: AdminScreenProps) {
                   <div>
                     <strong>{item.text}</strong>
                     <small>
-                      {item.source === "seed" ? "Sistem kaydı" : item.ip} · {item.category} ·{" "}
+                      {item.source === "seed" ? `Sistem kaydı · ${item.category}` : `${item.ip} · Kategorisiz`} ·{" "}
                       {new Date(item.createdAt).toLocaleString("tr-TR")}
                     </small>
                     {item.source === "community" ? (
