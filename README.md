@@ -1,6 +1,6 @@
-# Son 66 Saniye
+# Son 40 Saniye
 
-Trafik kazasından sonra telefonundaki 33 arama kaydını 66 saniye içinde
+Trafik kazasından sonra telefonundaki 33 arama kaydını 40 saniye içinde
 yönetmeye çalıştığın, topluluk havuzuyla büyüyen kısa bir kara mizah ve itibar
 oyunu.
 

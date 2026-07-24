@@ -2309,7 +2309,7 @@ kbd {
   .admin-filters { grid-template-columns: 1fr; }
 }
 
-/* 66-second reputation mode */
+/* Timed reputation mode */
 
 .start-screen,
 .community-screen,
