@@ -1,4 +1,5 @@
 import type { SearchHistoryCard } from "../types/game";
+import { ROUND_CARD_COUNT } from "../constants/game";
 
 function shuffle<T>(items: readonly T[]): T[] {
   const shuffled = [...items];
@@ -14,35 +15,22 @@ function shuffle<T>(items: readonly T[]): T[] {
 
 export function createRoundCards(
   pool: readonly SearchHistoryCard[],
-  count = 66,
+  count = ROUND_CARD_COUNT,
 ): SearchHistoryCard[] {
   const unique = Array.from(
     new Map(pool.map((card) => [card.text.trim().toLocaleLowerCase("tr"), card])).values(),
   );
   if (!unique.length) return [];
 
-  const risky = unique.filter(isRiskyCard);
-  const ordinary = unique.filter((card) => !isRiskyCard(card));
-  const riskyTarget =
-    risky.length && ordinary.length
-      ? Math.floor(Math.random() * (count + 1))
-      : risky.length
-        ? count
-        : 0;
-
-  const draw = (source: SearchHistoryCard[], amount: number, prefix: string) =>
-    Array.from({ length: amount }, (_, index) => {
-      const card = source[Math.floor(Math.random() * source.length)];
+  return shuffle(
+    Array.from({ length: count }, (_, index) => {
+      const card = unique[Math.floor(Math.random() * unique.length)];
       return {
         ...card,
-        id: `${card.id}-${prefix}-${index}-${Math.random().toString(36).slice(2, 8)}`,
+        id: `${card.id}-draw-${index}-${Math.random().toString(36).slice(2, 8)}`,
       };
-    });
-
-  return shuffle([
-    ...draw(risky, riskyTarget, "risk"),
-    ...draw(ordinary, count - riskyTarget, "safe"),
-  ]);
+    }),
+  );
 }
 
 export function isRiskyCard(card: SearchHistoryCard): boolean {

@@ -1,7 +1,10 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { SettingsBar } from "../components/SettingsBar";
-import { ROUND_DURATION_SECONDS } from "../constants/game";
+import {
+  ROUND_CARD_COUNT,
+  ROUND_DURATION_SECONDS,
+} from "../constants/game";
 import type {
   CommunitySearch,
   GameSettings,
@@ -71,7 +74,7 @@ export function StartScreen({
 
       <section className="start-copy">
         <p className="screen-eyebrow">
-          {ROUND_DURATION_SECONDS} SANİYE · 66 ARAMA · TEK ŞANS
+          {ROUND_DURATION_SECONDS} SANİYE · {ROUND_CARD_COUNT} ARAMA · TEK ŞANS
         </p>
         <h1>
           SON

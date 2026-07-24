@@ -1,19 +1,7 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { ApiError, submitCommunitySearch } from "../services/searchApi";
-import type { CommunitySearch, SearchCategory } from "../types/game";
-
-const categoryOptions: { value: SearchCategory; label: string }[] = [
-  { value: "absurd", label: "Absürt / komik" },
-  { value: "normal", label: "Gündelik / masum" },
-  { value: "embarrassing", label: "Utandırıcı" },
-  { value: "relationship", label: "İlişki" },
-  { value: "adult", label: "Yetişkin mizahı" },
-  { value: "sad", label: "Duygusal" },
-  { value: "paranormal", label: "Paranormal" },
-  { value: "money", label: "Para" },
-  { value: "health", label: "Sağlık" },
-];
+import type { CommunitySearch } from "../types/game";
 
 type SubmitSearchScreenProps = {
   onBack: () => void;
@@ -27,7 +15,6 @@ export function SubmitSearchScreen({
   pool,
 }: SubmitSearchScreenProps) {
   const [text, setText] = useState("");
-  const [category, setCategory] = useState<SearchCategory>("absurd");
   const [website, setWebsite] = useState("");
   const [status, setStatus] = useState<
     { type: "idle" | "loading" | "success" | "error"; message?: string }
@@ -46,7 +33,7 @@ export function SubmitSearchScreen({
     if (status.type === "loading") return;
     setStatus({ type: "loading" });
     try {
-      const created = await submitCommunitySearch({ text, category, website });
+      const created = await submitCommunitySearch({ text, website });
       onSubmitted(created);
       setText("");
       setStatus({
@@ -81,7 +68,8 @@ export function SubmitSearchScreen({
           <p>
             Gerçek kişilerin özel bilgilerini, bağlantı, telefon veya e-posta
             adresi yazmayın. Eklediğiniz cümle doğrudan oyun havuzuna katılır;
-            yönetici gerektiğinde düzenleyebilir ya da kaldırabilir.
+            kategoriye ayrılmaz ve turlara rastgele seçilir. Yönetici gerektiğinde
+            düzenleyebilir ya da kaldırabilir.
           </p>
 
           <form onSubmit={submit}>
@@ -99,17 +87,6 @@ export function SubmitSearchScreen({
               onChange={(event) => setText(event.target.value)}
               required
             />
-
-            <label htmlFor="search-category">Cümlenin tonu</label>
-            <select
-              id="search-category"
-              value={category}
-              onChange={(event) => setCategory(event.target.value as SearchCategory)}
-            >
-              {categoryOptions.map((option) => (
-                <option value={option.value} key={option.value}>{option.label}</option>
-              ))}
-            </select>
 
             <label className="honeypot" aria-hidden="true">
               Web sitesi
@@ -156,7 +133,7 @@ export function SubmitSearchScreen({
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <div>
                   <strong>{item.text}</strong>
-                  <small>{item.category} · {new Date(item.createdAt).toLocaleString("tr-TR")}</small>
+                  <small>{new Date(item.createdAt).toLocaleString("tr-TR")}</small>
                 </div>
               </article>
             ))}

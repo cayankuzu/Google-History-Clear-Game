@@ -3,6 +3,7 @@ import { searchHistoryCards } from "../src/data/searchHistoryCards";
 import { createRoundCards, isRiskyCard } from "../src/game/cardSelection";
 import { analyzeEnding } from "../src/game/endingAnalysis";
 import { calculateScore, reputationBands } from "../src/game/scoring";
+import { ROUND_CARD_COUNT, ROUND_DURATION_MS } from "../src/constants/game";
 import type { GameResult, SearchHistoryCard } from "../src/types/game";
 
 const ids = new Set(searchHistoryCards.map((card) => card.id));
@@ -40,22 +41,24 @@ if (
   throw new Error("Her unvan için en az dört sonuç anlatısı gerekli.");
 }
 
-let minimumRisk = 66;
+let minimumRisk = ROUND_CARD_COUNT;
 let maximumRisk = 0;
+const observedRiskCounts = new Set<number>();
 for (let round = 0; round < 500; round += 1) {
   const cards = createRoundCards(searchHistoryCards);
-  if (cards.length !== 66) {
-    throw new Error(`${round + 1}. turda 66 kayıt seçilmedi.`);
+  if (cards.length !== ROUND_CARD_COUNT) {
+    throw new Error(`${round + 1}. turda ${ROUND_CARD_COUNT} kayıt seçilmedi.`);
   }
-  if (new Set(cards.map((card) => card.id)).size !== 66) {
+  if (new Set(cards.map((card) => card.id)).size !== ROUND_CARD_COUNT) {
     throw new Error(`${round + 1}. turdaki oynanış kimlikleri benzersiz değil.`);
   }
   const riskCount = cards.filter(isRiskyCard).length;
+  observedRiskCounts.add(riskCount);
   minimumRisk = Math.min(minimumRisk, riskCount);
   maximumRisk = Math.max(maximumRisk, riskCount);
 }
 
-if (minimumRisk > 10 || maximumRisk < 56) {
+if (observedRiskCounts.size < 5 || minimumRisk === maximumRisk) {
   throw new Error(
     `Tur dağılımı yeterince değişken değil: risk aralığı ${minimumRisk}–${maximumRisk}`,
   );
@@ -69,7 +72,7 @@ const makeResult = (
   deleted,
   kept: [],
   unprocessed,
-  elapsedMs: 66_000,
+  elapsedMs: ROUND_DURATION_MS,
 });
 const optimalDeleted = sampleRound.filter(isRiskyCard);
 const optimalRemaining = sampleRound.filter((card) => !isRiskyCard(card));

@@ -25,6 +25,25 @@ const defaultSettings: GameSettings = {
   sound: true,
 };
 
+function communitySearchToCard(item: CommunitySearch): SearchHistoryCard {
+  const isSeed = item.id.startsWith("seed-");
+  return {
+    id: item.id,
+    text: item.text,
+    categories: isSeed ? [item.category] : [],
+    severity: isSeed
+      ? ["normal", "wholesome"].includes(item.category)
+        ? 1
+        : ["absurd", "relationship", "family"].includes(item.category)
+          ? 3
+          : 4
+      : 1,
+    context: isSeed
+      ? "Başlangıç arama havuzu"
+      : "Topluluk havuzundan rastgele seçilmiş",
+  };
+}
+
 function readSettings(): GameSettings {
   try {
     const stored = localStorage.getItem("son33-settings");
@@ -107,19 +126,7 @@ export function App() {
       );
       setCommunitySearches(latestCommunity);
       const poolCards: SearchHistoryCard[] = latestCommunity.length
-        ? latestCommunity.map((item) => ({
-            id: item.id,
-            text: item.text,
-            categories: [item.category],
-            severity: ["normal", "wholesome"].includes(item.category)
-              ? 1
-              : ["absurd", "relationship", "family"].includes(item.category)
-                ? 3
-                : 4,
-            context: item.id.startsWith("seed-")
-              ? "Başlangıç arama havuzu"
-              : "Topluluk havuzuna eklenmiş",
-          }))
+        ? latestCommunity.map(communitySearchToCard)
         : searchHistoryCards;
       setRoundCards(createRoundCards(poolCards));
       setGameResult(null);

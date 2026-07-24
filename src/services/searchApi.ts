@@ -66,7 +66,7 @@ export function fetchCommunitySearches() {
 
 export function submitCommunitySearch(input: {
   text: string;
-  category: SearchCategory;
+  category?: SearchCategory;
   website?: string;
 }) {
   return request<CommunitySearch>("/api/searches", {

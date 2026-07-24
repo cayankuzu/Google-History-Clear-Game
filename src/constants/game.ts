@@ -1,2 +1,3 @@
 export const ROUND_DURATION_SECONDS = 66;
 export const ROUND_DURATION_MS = ROUND_DURATION_SECONDS * 1_000;
+export const ROUND_CARD_COUNT = 33;

@@ -51,6 +51,7 @@ export function cardReputation(card: SearchHistoryCard) {
 }
 
 function decisionValue(card: SearchHistoryCard, deleted: boolean) {
+  if (!card.categories.length) return 0;
   const reputation = cardReputation(card);
   if (deleted) {
     return reputation < 0

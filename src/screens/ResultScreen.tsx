@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ApiError, submitScore } from "../services/searchApi";
-import { ROUND_DURATION_SECONDS } from "../constants/game";
+import {
+  ROUND_CARD_COUNT,
+  ROUND_DURATION_SECONDS,
+} from "../constants/game";
 import type {
   EndingResult,
   GameResult,
@@ -88,7 +91,7 @@ export function ResultScreen({
       <section className="result-shell">
         <header className="result-minimal-top">
           <p><i /> OTURUM SONLANDIRILDI</p>
-          <span>{ROUND_DURATION_SECONDS} SANİYE · 66 KAYIT</span>
+          <span>{ROUND_DURATION_SECONDS} SANİYE · {ROUND_CARD_COUNT} KAYIT</span>
         </header>
 
         <div className="result-hero">

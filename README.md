@@ -1,6 +1,6 @@
 # Son 66 Saniye
 
-Trafik kazasından sonra telefonundaki 66 arama kaydını 66 saniye içinde
+Trafik kazasından sonra telefonundaki 33 arama kaydını 66 saniye içinde
 yönetmeye çalıştığın, topluluk havuzuyla büyüyen kısa bir kara mizah ve itibar
 oyunu.
 
@@ -19,8 +19,8 @@ Canlı yayında güçlü ve benzersiz bir oturum sırrı kullanılmalıdır.
 
 ## Oynanış ve puan
 
-- Her tur ortak havuzdan 66 arama geçmişi satırı üretilir.
-- Havuz 66’dan küçükse aynı arama farklı zamanlara ait tekrar eden geçmiş
+- Her tur ortak havuzdan rastgele 33 arama geçmişi satırı üretilir.
+- Havuz 33’ten küçükse aynı arama farklı zamanlara ait tekrar eden geçmiş
   girdileri olarak bir turda birden fazla kez görünebilir.
 - Telefon listesini yukarı-aşağı kaydırabilir, bir kaydı sola sürükleyerek,
   yanındaki çarpıya basarak veya klavyede `Delete`, `Backspace` ya da `←`
@@ -34,8 +34,9 @@ Canlı yayında güçlü ve benzersiz bir oturum sırrı kullanılmalıdır.
 ## Ortak havuz, liderlik ve yönetim
 
 Ana ekrandaki **Listeye arama ekle** alanı girilen aramayı yerel ortak havuza
-ekler. Sonuç ekranında isteğe bağlı kullanıcı adıyla skor liderlik tablosuna
-yazdırılabilir.
+ekler. Topluluk girdileri kategoriye ayrılmaz; tek havuzdan eşit olasılıkla
+rastgele seçilir ve itibar puanında tarafsız kalır. Sonuç ekranında isteğe bağlı
+kullanıcı adıyla skor liderlik tablosuna yazdırılabilir.
 
 Yönetim panelinde:
 
@@ -66,5 +67,5 @@ npm run lint
 npm run build
 ```
 
-Veri testi varsayılan havuzu, 66 kartlık turları, rastgele risk dağılımını,
+Veri testi varsayılan havuzu, 33 kartlık turları, rastgele risk dağılımını,
 tur tavanını, itibar puanını ve sonuç üretimini doğrular.
