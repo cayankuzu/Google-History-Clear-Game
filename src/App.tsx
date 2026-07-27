@@ -232,6 +232,11 @@ export function App() {
           />
         ) : null}
       </AnimatePresence>
+      <footer className="global-footer" aria-label="Telif ve yapım bilgisi">
+        <span>Copyright © {new Date().getFullYear()}</span>
+        <span aria-hidden="true">•</span>
+        <span>MeMoDe tarafından</span>
+      </footer>
     </div>
   );
 }

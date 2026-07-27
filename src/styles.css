@@ -1702,6 +1702,33 @@ kbd {
   }
 }
 
+/* Shared footer */
+
+.global-footer {
+  position: fixed;
+  z-index: 100;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  min-height: 28px;
+  padding: 5px max(14px, env(safe-area-inset-right))
+    calc(5px + env(safe-area-inset-bottom))
+    max(14px, env(safe-area-inset-left));
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(245, 242, 235, 0.72);
+  background: rgba(7, 7, 7, 0.88);
+  font: 500 0.56rem var(--mono);
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-align: center;
+  pointer-events: none;
+  backdrop-filter: blur(12px);
+}
+
 /* Growing community pool and list-based game */
 
 .secondary-button,
