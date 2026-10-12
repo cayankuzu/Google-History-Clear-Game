@@ -24,7 +24,10 @@ Canlı yayında güçlü ve benzersiz bir oturum sırrı kullanılmalıdır.
   girdileri olarak bir turda birden fazla kez görünebilir.
 - Telefon listesini yukarı-aşağı kaydırabilir, bir kaydı sola sürükleyerek,
   yanındaki çarpıya basarak veya klavyede `Delete`, `Backspace` ya da `←`
-  kullanarak silebilirsin.
+  kullanarak silebilirsin. `↑` / `↓` ile satırlar arasında gezinilir.
+- Yanlışlıkla silinen kayıt için turda 3 geri alma hakkı vardır (`Z`).
+- Süre azaldıkça nabız yükselir, pil biter, ekran kararır ve telefona
+  bildirimler düşer; son 10 saniyede kalp atışı duyulur.
 - İyi aramaları korumak ve riskli aramaları silmek puan kazandırır. Masum
   aramaları silmek ve riskli aramaları bırakmak puan kaybettirir.
 - Her turun risk dağılımı farklıdır; 0–1000 puan, turun teorik en iyi ve en kötü
